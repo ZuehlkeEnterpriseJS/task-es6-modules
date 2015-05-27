@@ -3,24 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Task - ES6 Modules</title>
-    <script src="lib/browser.js"></script>
-    <script src="lib/es6-module-loader.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
-<ul id="log-output"></ul>
-
-<script>
-    System.transpiler = 'babel';
-    System.babelOptions = {
-        sourceMaps: 'inline'
-    };
-</script>
-
-<script>
-    System.import('app').then(function(module) {
-        new module.App();
-    });
-</script>
-
+    <ul id="log-output"></ul>
 </body>
 </html>

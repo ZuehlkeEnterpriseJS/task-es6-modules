@@ -14,6 +14,6 @@ As your browser probably does not yet support ES6, Babel is used to transpile ES
 1.1 Introduce a new class called `App` which logs "hello" to the console and instantiate the class when the app starts. Does it work?
 1.2 Move the application bootstrap logic (start), to the `App` class and introduce new classes 
 
-## Solution ## 
+## Solution ##
 
 The solution includes a main Application class (App), three business classes (Car, Motor, Light) and a helper class (Logger).

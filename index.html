@@ -8,37 +8,73 @@
 <body>
     <ul id="log-output"></ul>
     
-    <script type="text/javascript">
+    <script type="text/babel">
+            
+        class Logger {
         
-        var statusLightsOn = false;
-        var statusMotorRunning = false;
-        var statusCarReady = statusLightsOn && statusMotorRunning;
-        
-        function start() {
-            logToView('starting...');
-        
-            runMotor();
-            switchOnLights();
+            static info(message) {
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode(message));
+                document.querySelector('#log-output').appendChild(li);
+            }
         }
         
-        function runMotor() {
-            statusMotorRunning = true;
-            logToView('motor is running... "puff puff"');
+        
+        class Lights {
+        
+            constructor() {
+                this.lightsAreOn = false;
+            }
+        
+            on() {
+                this.lightsAreOn = true;
+                Logger.info('Headlights now on ...');
+            }
         }
         
-        function switchOnLights() {
-            statusLightsOn = true;
-            logToView('Headlights now on...');
+        
+        class Motor {
+        
+            constructor() {
+                this.isRunning = false;
+            }
+        
+            start() {
+                this.isRunning = true;
+                Logger.info('motor started... puff puff');
+            }
         }
         
-        function logToView(message) {
-            var li = document.createElement('li');
-            li.appendChild(document.createTextNode(message));
-            document.querySelector('#log-output').appendChild(li);
+        
+        class Car {
+        
+            constructor() {
+                this.motor = new Motor();
+                this.lights = new Lights();
+            }
+        
+            start() {
+                Logger.info("car is starting..");
+                this.motor.start();
+                this.lights.on();
+            }
+        
+            get isCarReady() {
+                return this.motor.isRunning && this.lights.lightsAreOn;
+            }
         }
         
-        start();
-        console.log("Status:", statusCarReady ? "car running" : "car not running");
+        
+        class App {
+        
+            constructor() {
+                const car = new Car();
+                car.start();
+                console.log(`Status: car is ${ car.isCarReady ? "running" : "not running" }`);
+            }
+        }
+        
+        new App();
     </script>
 </body>
 </html>

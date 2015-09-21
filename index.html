@@ -9,7 +9,7 @@
     <ul id="log-output"></ul>
     
     <script type="text/javascript">
-    
+        
         var statusLightsOn = false;
         var statusMotorRunning = false;
         var statusCarReady = statusLightsOn && statusMotorRunning;
@@ -37,11 +37,8 @@
             document.querySelector('#log-output').appendChild(li);
         }
         
-        document.addEventListener("DOMContentLoaded", function() {
-            start();
-            console.log("Status:", statusCarReady ? "car running" : "car not running");
-        });
-    
+        start();
+        console.log("Status:", statusCarReady ? "car running" : "car not running");
     </script>
 </body>
 </html>

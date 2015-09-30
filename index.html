@@ -3,9 +3,78 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Task - ES6 Modules</title>
-    <script src="app.js"></script>
+    <script src="lib/browser.js"></script>
 </head>
 <body>
     <ul id="log-output"></ul>
+    
+    <script type="text/babel">
+            
+        class Logger {
+        
+            static info(message) {
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode(message));
+                document.querySelector('#log-output').appendChild(li);
+            }
+        }
+        
+        
+        class Lights {
+        
+            constructor() {
+                this.lightsAreOn = false;
+            }
+        
+            on() {
+                this.lightsAreOn = true;
+                Logger.info('Headlights now on ...');
+            }
+        }
+        
+        
+        class Motor {
+        
+            constructor() {
+                this.isRunning = false;
+            }
+        
+            start() {
+                this.isRunning = true;
+                Logger.info('motor started... puff puff');
+            }
+        }
+        
+        
+        class Car {
+        
+            constructor() {
+                this.motor = new Motor();
+                this.lights = new Lights();
+            }
+        
+            start() {
+                Logger.info("car is starting..");
+                this.motor.start();
+                this.lights.on();
+            }
+        
+            get isCarReady() {
+                return this.motor.isRunning && this.lights.lightsAreOn;
+            }
+        }
+        
+        
+        class App {
+        
+            constructor() {
+                const car = new Car();
+                car.start();
+                console.log(`Status: car is ${ car.isCarReady ? "running" : "not running" }`);
+            }
+        }
+        
+        new App();
+    </script>
 </body>
 </html>
